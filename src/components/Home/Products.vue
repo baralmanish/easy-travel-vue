@@ -1,5 +1,6 @@
 <script lang="ts">
 import gql from 'graphql-tag'
+import { RouterLink } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
@@ -52,10 +53,14 @@ export default {
           <Card v-for="item in result.products" :key="item.id" bg="bg-white">
             <div class="flex flex-col items-center gap-2 text-center">
               <img
-                :src="`https://picsum.photos/id/${Math.floor(Math.random() * 200)}/300/200`"
+                :src="`https://picsum.photos/id/${item.id}/300/200`"
                 class="aspect-video w-full object-cover"
               />
-              <span class="font-bold text-blue-700">{{ item.name }}</span>
+              <RouterLink
+                :to="`/product/${item.id}`"
+                class="font-bold text-blue-700 hover:text-blue-600"
+                >{{ item.name }}</RouterLink
+              >
               <span class="text-2xl font-bold">
                 <font-awesome-icon icon="fa-solid fa-euro-sign" />
                 {{ item.price }}

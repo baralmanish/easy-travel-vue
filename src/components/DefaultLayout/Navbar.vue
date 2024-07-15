@@ -9,7 +9,7 @@ const isActiveLink = (routePath: string) => {
 
 <template>
   <nav class="border-b border-blue-500 bg-blue-700">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="container-xl m-auto lg:container">
       <div class="flex h-16 items-center justify-between">
         <div class="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
           <!-- Logo -->
