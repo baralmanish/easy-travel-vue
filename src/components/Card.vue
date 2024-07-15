@@ -1,14 +1,22 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 defineProps({
   bg: {
     type: String,
     default: 'bg-gray-100'
+  },
+  to: {
+    type: String
   }
 })
 </script>
 
 <template>
-  <div :class="`${bg} rounded-lg p-6 shadow-md`">
+  <RouterLink v-if="to" :to="to" :class="`${bg} rounded-lg p-6 shadow-md`">
+    <slot></slot>
+  </RouterLink>
+  <div v-else :class="`${bg} rounded-lg p-6 shadow-md`">
     <slot></slot>
   </div>
 </template>

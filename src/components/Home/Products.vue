@@ -1,5 +1,7 @@
 <script lang="ts">
 import gql from 'graphql-tag'
+import { computed, ref, watch, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
@@ -8,8 +10,8 @@ import Card from '@/components/Card.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
 const QUERY = gql`
-  query Products {
-    products {
+  query Products($categoryId: Float) {
+    products(categoryId: $categoryId) {
       id
       name
       price
@@ -29,12 +31,23 @@ export default {
     ErrorBoundary
   },
   setup() {
-    const { result, loading, error } = useQuery(QUERY)
+    const route = useRoute()
+    const currentId = computed(() => {
+      return route.query.category || null
+    })
+
+    let variables = { categoryId: currentId.value ? +currentId.value : null }
+    const res = useQuery(QUERY, variables)
+
+    watchEffect(async () => {
+      const id = route.query.category
+      await res.refetch({ categoryId: id ? +id : null })
+    })
 
     return {
-      result,
-      loading,
-      error
+      route,
+      currentId,
+      ...res
     }
   }
 }

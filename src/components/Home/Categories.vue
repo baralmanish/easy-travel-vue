@@ -1,5 +1,7 @@
 <script lang="ts">
 import gql from 'graphql-tag'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
@@ -22,11 +24,17 @@ export default {
     ErrorBoundary
   },
   setup() {
+    const route = useRoute()
     const icons = ['fa-plane', 'fa-hotel', 'fa-cab']
+
+    const currentId = computed(() => {
+      return route.query.category || null
+    })
 
     const { result, loading, error } = useQuery(QUERY)
 
     return {
+      currentId,
       result,
       loading,
       error,
@@ -45,7 +53,12 @@ export default {
           v-if="result"
           class="grid grid-cols-1 gap-12 rounded-lg p-4 sm:grid-cols-2 md:grid-cols-3"
         >
-          <Card v-for="(item, index) in result.categories" :key="item.id">
+          <Card
+            v-for="(item, index) in result.categories"
+            :key="item.id"
+            :bg="`${currentId === item.id ? 'bg-blue-500 text-white' : 'bg-gray-100'} hover:bg-blue-700 hover:text-white`"
+            :to="`/?category=${item.id}`"
+          >
             <div class="flex flex-col items-center gap-3 p-2">
               <font-awesome-icon :icon="`fa-solid ${icons[index]}`" class="text-2xl" />
               <span class="text-xl font-bold">{{ item.name }}</span>

@@ -1,8 +1,8 @@
 <script>
 import gql from 'graphql-tag'
+import { useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
-import { useRoute } from 'vue-router'
 
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
@@ -24,7 +24,6 @@ const QUERY = gql`
 
 export default {
   components: {
-    // Card,
     PulseLoader,
     ErrorBoundary
   },
