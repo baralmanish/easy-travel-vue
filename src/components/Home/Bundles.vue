@@ -57,9 +57,14 @@ export default {
                 >Make an Order</RouterLink
               >
 
-              <div class="flex gap-2 text-xs leading-3 text-gray-600">
+              <div class="flex gap-2 text-xs leading-3">
                 <span v-for="(product, index) in item.products" :key="index">
-                  {{ product.name }}
+                  <RouterLink
+                    :to="`/bundle/${item.id}`"
+                    target="_blank"
+                    class="text-gray-600 hover:text-gray-900"
+                    >{{ product.name }}</RouterLink
+                  >
                 </span>
               </div>
             </div>
