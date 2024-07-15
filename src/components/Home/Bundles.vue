@@ -7,18 +7,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import Card from '@/components/Card.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const QUERY = gql`
-  query Bundles {
-    bundles {
-      id
-      name
-      price
-      products {
-        name
-      }
-    }
-  }
-`
+import { BundleQuery } from '@/graphql/queries'
 
 export default {
   components: {
@@ -27,7 +16,7 @@ export default {
     ErrorBoundary
   },
   setup() {
-    const { result, loading, error } = useQuery(QUERY)
+    const { result, loading, error } = useQuery(BundleQuery)
 
     return {
       result,
@@ -62,7 +51,13 @@ export default {
                 {{ item.price }}
               </span>
 
-              <div class="mt-3 flex gap-2 text-xs leading-3 text-gray-600">
+              <RouterLink
+                :to="`/make-order?bundleId=${item.id}`"
+                class="my-2 w-full rounded-md bg-blue-700 px-3 py-2 text-white hover:bg-blue-900"
+                >Make an Order</RouterLink
+              >
+
+              <div class="flex gap-2 text-xs leading-3 text-gray-600">
                 <span v-for="(product, index) in item.products" :key="index">
                   {{ product.name }}
                 </span>

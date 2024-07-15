@@ -1,29 +1,14 @@
 <script>
-import gql from 'graphql-tag'
+import { RouterLink, useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
-import { useRoute } from 'vue-router'
 
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const QUERY = gql`
-  query Product($productId: Int!) {
-    getProductById(id: $productId) {
-      id
-      name
-      price
-      location
-      description
-      category {
-        name
-      }
-    }
-  }
-`
+import { ProductByIdQuery } from '@/graphql/queries'
 
 export default {
   components: {
-    // Card,
     PulseLoader,
     ErrorBoundary
   },
@@ -32,7 +17,7 @@ export default {
     const id = route.params.id
 
     const variables = { productId: +id }
-    const { result, loading, error } = useQuery(QUERY, variables)
+    const { result, loading, error } = useQuery(ProductByIdQuery, variables)
 
     return {
       result,
@@ -68,11 +53,12 @@ export default {
             {{ result.getProductById.price }}
           </span>
 
-          <Button
-            class="flex items-center rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+          <RouterLink
+            :to="`/make-order?productId=${result.getProductById.id}`"
+            class="mt-1 rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-900"
           >
-            Place an Order
-          </Button>
+            Make an Order
+          </RouterLink>
 
           <p class="mt-5">
             {{ result.getProductById.description }}

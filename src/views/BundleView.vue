@@ -1,26 +1,12 @@
 <script>
 import gql from 'graphql-tag'
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const QUERY = gql`
-  query Bundle($bundleId: Int!) {
-    bundle(id: $bundleId) {
-      id
-      name
-      price
-      description
-      products {
-        id
-        name
-        price
-      }
-    }
-  }
-`
+import { BundleByIdQuery } from '@/graphql/queries'
 
 export default {
   components: {
@@ -32,7 +18,7 @@ export default {
     const id = route.params.id
 
     const variables = { bundleId: +id }
-    const { result, loading, error } = useQuery(QUERY, variables)
+    const { result, loading, error } = useQuery(BundleByIdQuery, variables)
 
     return {
       result,
@@ -64,11 +50,12 @@ export default {
             {{ result.bundle.price }}
           </span>
 
-          <Button
-            class="flex items-center rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600"
+          <RouterLink
+            :to="`/make-order?productId=${result.bundle.id}`"
+            class="mt-1 rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-900"
           >
-            Place an Order as a Bundle
-          </Button>
+            Make an Order
+          </RouterLink>
 
           <p class="mt-5">
             {{ result.bundle.description }}

@@ -1,28 +1,14 @@
 <script lang="ts">
-import gql from 'graphql-tag'
-import { computed, ref, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
+import { computed, watchEffect } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 import Card from '@/components/Card.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const QUERY = gql`
-  query Products($categoryId: Float) {
-    products(categoryId: $categoryId) {
-      id
-      name
-      price
-      location
-      category {
-        id
-        name
-      }
-    }
-  }
-`
+import { ProductQuery } from '@/graphql/queries'
 
 export default {
   components: {
@@ -37,7 +23,7 @@ export default {
     })
 
     let variables = { categoryId: currentId.value ? +currentId.value : null }
-    const res = useQuery(QUERY, variables)
+    const res = useQuery(ProductQuery, variables)
 
     watchEffect(async () => {
       const id = route.query.category
@@ -88,6 +74,13 @@ export default {
                   {{ item.location }}
                 </span>
               </div>
+
+              <RouterLink
+                :to="`/make-order?productId=${item.id}`"
+                class="mt-1 w-full rounded-md bg-blue-700 px-3 py-2 text-white hover:bg-blue-900"
+              >
+                Make an Order
+              </RouterLink>
             </div>
           </Card>
         </div>

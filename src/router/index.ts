@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,16 @@ const router = createRouter({
       path: '/bundle/:id',
       name: 'bundle',
       component: () => import('../views/BundleView.vue')
+    },
+    {
+      path: '/make-order',
+      name: 'order',
+      component: () => import('../views/OrderView.vue')
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: NotFoundView
     }
   ]
 })

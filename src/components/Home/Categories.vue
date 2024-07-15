@@ -8,14 +8,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import Card from '@/components/Card.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const QUERY = gql`
-  query Categories {
-    categories {
-      id
-      name
-    }
-  }
-`
+import { CategoryQuery } from '@/graphql/queries'
 
 export default {
   components: {
@@ -31,7 +24,7 @@ export default {
       return route.query.category || null
     })
 
-    const { result, loading, error } = useQuery(QUERY)
+    const { result, loading, error } = useQuery(CategoryQuery)
 
     return {
       currentId,
