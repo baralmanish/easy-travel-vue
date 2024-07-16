@@ -41,7 +41,7 @@ export default {
   <section class="py-8">
     <div class="container-xl m-auto lg:container">
       <ErrorBoundary :error="error">
-        <div class="p-4 text-center" v-if="loading"><PulseLoader /></div>
+        <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
         <div
           v-if="result"
           class="grid grid-cols-1 gap-12 rounded-lg p-4 sm:grid-cols-2 md:grid-cols-3"

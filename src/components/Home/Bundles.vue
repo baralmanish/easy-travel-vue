@@ -32,7 +32,7 @@ export default {
     <div class="container-xl m-auto lg:container">
       <h2 class="mb-2 px-4 text-2xl font-bold sm:text-3xl md:text-4xl">Product Bundles</h2>
       <ErrorBoundary :error="error">
-        <div class="p-4 text-center" v-if="loading"><PulseLoader /></div>
+        <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
         <div
           v-if="result"
           class="grid grid-cols-1 gap-5 rounded-lg p-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"

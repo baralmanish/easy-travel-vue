@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ApolloError } from '@apollo/client/core'
+import type { IError } from '@/interfaces/common'
+
 defineProps<{
-  error: ApolloError | null
+  error: ApolloError | IError | null
 }>()
 </script>
 

@@ -34,7 +34,7 @@ export default {
 <template>
   <section class="container-xl m-auto px-4 py-12 lg:container">
     <ErrorBoundary :error="error">
-      <div class="p-4 text-center" v-if="loading"><PulseLoader /></div>
+      <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
 
       <div v-if="result">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10">
@@ -52,7 +52,7 @@ export default {
             </span>
 
             <RouterLink
-              :to="`/make-order?productId=${result.bundle.id}`"
+              :to="`/make-order?bundleId=${result.bundle.id}`"
               class="mt-1 rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-900"
             >
               Make an Order
