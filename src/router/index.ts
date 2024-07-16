@@ -41,14 +41,27 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'adminDashboard',
-      component: () => import('../views/AdminView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('../views/AdminView.vue')
+    },
+    {
+      path: '/admin/order/:id',
+      name: 'adminOrder',
+      component: () => import('../views/AdminOrderView.vue')
     },
     {
       path: '/admin/products',
       name: 'adminProducts',
-      component: () => import('../views/AdminProductsView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('../views/AdminProductsView.vue')
+    },
+    {
+      path: '/admin/product/add',
+      name: 'adminProductsAdd',
+      component: () => import('../views/AdminProductsFormView.vue')
+    },
+    {
+      path: '/admin/product/:id/update',
+      name: 'adminProductsUpdate',
+      component: () => import('../views/AdminProductsFormView.vue')
     },
     {
       path: '/:catchAll(.*)',

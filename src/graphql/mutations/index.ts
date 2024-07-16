@@ -1,3 +1,9 @@
-import { CreateOrderMutation } from './orderMutation'
+import { CreateOrderMutation, UpdateOrderStatusMutation } from './orderMutation'
+import { CreateProductMutation, UpdateProductMutation } from './productMutation'
 
-export { CreateOrderMutation }
+export {
+  CreateOrderMutation,
+  UpdateOrderStatusMutation,
+  CreateProductMutation,
+  UpdateProductMutation
+}

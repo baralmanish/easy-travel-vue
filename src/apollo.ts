@@ -2,10 +2,27 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 
 const cache = new InMemoryCache()
+const defaultOptions = {
+  query: {
+    fetchPolicy: 'no-cache'
+    // errorPolicy: 'all'
+  }
+}
 
 const apolloClient = new ApolloClient({
   cache,
-  uri: 'http://localhost:4000/graphql'
+  connectToDevTools: true,
+  uri: 'http://localhost:4000/graphql',
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all'
+    },
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all'
+    }
+  }
 })
 
 // const apolloProvider = createApolloProvider({

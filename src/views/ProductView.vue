@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
@@ -31,7 +31,7 @@ export default {
 <template>
   <section class="container-xl m-auto px-4 py-12 lg:container">
     <ErrorBoundary :error="error">
-      <div class="p-4 text-center" v-if="loading"><PulseLoader /></div>
+      <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
 
       <div v-if="result" class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10">
         <div>

@@ -1,22 +1,25 @@
 <script lang="ts" setup>
+import { RouterLink } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
+import { formatDate } from '@/helpers/utility'
 import { AllProductsQuery } from '@/graphql/queries'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
-const { result, loading, error, ...res } = useQuery(AllProductsQuery)
-
-console.log('>>>> res', res)
+const { result, loading, error } = useQuery(AllProductsQuery)
 </script>
 
 <template>
   <section class="container-xl m-auto px-4 py-10 lg:container">
     <div class="mb-5 flex justify-between">
       <h1 class="text-3xl font-bold">Products</h1>
-      <button class="rounded-lg bg-blue-700 px-3 py-1 text-sm text-white hover:bg-blue-800">
+      <RouterLink
+        to="/admin/product/add"
+        class="flex items-center rounded-lg bg-blue-700 px-3 py-1 text-sm text-white hover:bg-blue-800"
+      >
         Add Product
-      </button>
+      </RouterLink>
     </div>
     <ErrorBoundary :error="error">
       <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
@@ -27,6 +30,7 @@ console.log('>>>> res', res)
               <th scope="col" class="w-14 px-4 py-3">ID</th>
               <th scope="col" class="px-4 py-3">Name</th>
               <th scope="col" class="px-4 py-3">Category</th>
+              <th scope="col" class="w-28 px-4 py-3">Date</th>
               <th scope="col" class="w-28 px-4 py-3">Price</th>
               <th scope="col" class="w-20 px-4 py-3">Status</th>
               <th scope="col" class="w-24 px-4 py-3">Action</th>
@@ -41,6 +45,7 @@ console.log('>>>> res', res)
               <td class="px-4 py-3">{{ row.id }}</td>
               <td class="px-4 py-3">{{ row.name }}</td>
               <td class="px-4 py-3">{{ row.category.name }}</td>
+              <td class="px-4 py-3">{{ formatDate(row.date) }}</td>
               <td class="px-4 py-3">
                 <font-awesome-icon icon="fa-solid fa-euro-sign" />
                 {{ row.price }}
@@ -60,11 +65,12 @@ console.log('>>>> res', res)
                 </span>
               </td>
               <td class="px-4 py-3">
-                <button
+                <RouterLink
+                  :to="`/admin/product/${row.id}/update`"
                   class="rounded-lg bg-blue-700 px-3 py-1 text-xs text-white hover:bg-blue-800"
                 >
                   Edit
-                </button>
+                </RouterLink>
               </td>
             </tr>
           </tbody>

@@ -7,3 +7,11 @@ export const isAuthenticated = () => {
   }
   return authenticated
 }
+
+export const formatDate = (date: string | null) => {
+  if (!date) {
+    return ''
+  }
+
+  return new Date(date).toISOString().split('T')[0]
+}

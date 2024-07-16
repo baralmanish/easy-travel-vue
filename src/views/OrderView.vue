@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useMutation, useQuery } from '@vue/apollo-composable'
 import { computed, reactive, ref, type Ref } from 'vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 import Card from '@/components/Card.vue'
+import Notification from '@/components/Notification.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
 import type { IError } from '@/interfaces/common'
@@ -71,8 +72,7 @@ const handleSubmit = async () => {
       bundleId: route.query.bundleId ? Number(route.query.bundleId) : null,
       productId: route.query.productId ? Number(route.query.productId) : null
     }
-    const res = await createOrder({ ...variables })
-    console.log('>> res', res)
+    await createOrder({ ...variables })
     formStatus.success = 'Order placed successfully'
     resetForm()
   } catch (error) {
@@ -152,20 +152,11 @@ const handleSubmit = async () => {
           <Card>
             <form @submit.prevent="handleSubmit" :disabled="formStatus.loading">
               <h1 class="mb-4 text-2xl font-bold">Place an Order</h1>
-
-              <div
-                v-if="formStatus.error"
-                class="mb-4 rounded-lg border-[1px] border-red-200 bg-red-100 px-3 py-2 text-xs text-red-800"
-              >
-                {{ formStatus.error }}
-              </div>
-
-              <div
-                v-if="formStatus.success"
-                class="mb-4 rounded-lg border-[1px] border-green-200 bg-green-100 px-3 py-2 text-xs text-green-800"
-              >
-                {{ formStatus.success }}
-              </div>
+              <Notification
+                :error="formStatus.error"
+                :success="formStatus.success"
+                textSize="text-xs"
+              />
 
               <div class="mb-4">
                 <label class="mb-2 block font-bold text-gray-700">Job Listing Name</label>

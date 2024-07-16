@@ -23,6 +23,7 @@ const AllProductsQuery = gql`
       price
       location
       isActive
+      date
       category {
         id
         name
@@ -36,10 +37,11 @@ const ProductByIdQuery = gql`
     getProductById(id: $productId) {
       id
       name
+      date
       price
       location
-      description
       isActive
+      description
       category {
         id
         name

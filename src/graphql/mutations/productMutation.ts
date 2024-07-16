@@ -1,53 +1,17 @@
 import gql from 'graphql-tag'
 
 const CreateProductMutation = gql`
-  mutation CreateProduct(
-    $customerEmail: String!
-    $customerName: String!
-    $bundleId: Int
-    $productId: Int
-  ) {
-    createOrder(
-      customerEmail: $customerEmail
-      customerName: $customerName
-      bundleId: $bundleId
-      productId: $productId
-    ) {
+  mutation CreateProduct($data: CreateProductInput!) {
+    createProduct(data: $data) {
       id
-      name
-      price
-      location
-      isActive
-      category {
-        id
-        name
-      }
     }
   }
 `
 
 const UpdateProductMutation = gql`
-  mutation CreateProduct(
-    $customerEmail: String!
-    $customerName: String!
-    $bundleId: Int
-    $productId: Int
-  ) {
-    createOrder(
-      customerEmail: $customerEmail
-      customerName: $customerName
-      bundleId: $bundleId
-      productId: $productId
-    ) {
+  mutation UpdateProduct($data: UpdateProductInput!, $id: Int!) {
+    updateProduct(data: $data, id: $id) {
       id
-      name
-      price
-      location
-      isActive
-      category {
-        id
-        name
-      }
     }
   }
 `
