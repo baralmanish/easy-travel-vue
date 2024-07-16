@@ -8,7 +8,7 @@ import Card from '@/components/Card.vue'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 
 import type { IError } from '@/interfaces/common'
-import { CreateOrderMutation } from '@/graphql/mutations/orderMutation'
+import { CreateOrderMutation } from '@/graphql/mutations'
 import { BundleByIdQuery, ProductByIdQuery } from '@/graphql/queries'
 
 const route = useRoute()
@@ -46,7 +46,6 @@ if (!orderFor.value) {
 }
 
 const variables = { [`${orderFor.value}`]: Number(route.query[`${orderFor.value}`]) }
-console.log('>>> q', BundleByIdQuery)
 const { result, loading, error } = useQuery(
   orderFor.value === 'productId' ? ProductByIdQuery : BundleByIdQuery,
   variables
@@ -197,7 +196,7 @@ const handleSubmit = async () => {
 
               <div>
                 <button
-                  class="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
+                  class="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none disabled:opacity-50"
                   type="submit"
                   :disabled="formStatus.loading"
                 >
