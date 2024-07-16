@@ -23,7 +23,6 @@ export default {
     })
 
     let variables = { isActive: true, categoryId: currentId.value ? +currentId.value : null }
-    console.log('>>> variables', variables)
     const res = useQuery(ProductQuery, variables)
 
     watchEffect(async () => {

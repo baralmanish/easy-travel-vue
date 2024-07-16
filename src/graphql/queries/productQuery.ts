@@ -15,19 +15,39 @@ const ProductQuery = gql`
   }
 `
 
-const ProductByIdQuery = gql`
-  query Product($productId: Int!) {
-    getProductById(id: $productId) {
+const AllProductsQuery = gql`
+  query Products {
+    products {
       id
       name
       price
       location
-      description
+      isActive
+      date
       category {
+        id
         name
       }
     }
   }
 `
 
-export { ProductQuery, ProductByIdQuery }
+const ProductByIdQuery = gql`
+  query Product($productId: Int!) {
+    getProductById(id: $productId) {
+      id
+      name
+      date
+      price
+      location
+      isActive
+      description
+      category {
+        id
+        name
+      }
+    }
+  }
+`
+
+export { ProductQuery, AllProductsQuery, ProductByIdQuery }

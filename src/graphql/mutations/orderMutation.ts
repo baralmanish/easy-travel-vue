@@ -18,4 +18,12 @@ const CreateOrderMutation = gql`
   }
 `
 
-export { CreateOrderMutation }
+const UpdateOrderStatusMutation = gql`
+  mutation UpdateOrderStatus($status: OrderStatus!, $orderId: Int!) {
+    updateOrderStatus(status: $status, orderId: $orderId) {
+      id
+    }
+  }
+`
+
+export { CreateOrderMutation, UpdateOrderStatusMutation }

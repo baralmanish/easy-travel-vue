@@ -1,16 +1,60 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
-const isActiveLink = (routePath: string) => {
-  const route = useRoute()
-  return route.path === routePath
+import { isAuthenticated } from '@/helpers/utility'
+
+const route = useRoute()
+const authenticated = ref(isAuthenticated())
+const clientPages = [
+  {
+    t0: '/',
+    name: 'Home'
+  },
+  {
+    t0: '/about',
+    name: 'About'
+  }
+]
+
+const pages = ref(clientPages)
+watch(route, () => {
+  authenticated.value = isAuthenticated()
+  if (isAuthenticated()) {
+    let adminPages = [
+      {
+        t0: '/admin',
+        name: 'Dashboard'
+      },
+      {
+        t0: '/admin/products',
+        name: 'Products'
+      }
+    ]
+    if (!route.path.includes('/admin')) {
+      adminPages = [
+        ...clientPages,
+        {
+          t0: '/admin',
+          name: 'Admin'
+        }
+      ]
+    }
+
+    pages.value = adminPages
+  }
+})
+
+const handleLogout = () => {
+  localStorage.clear()
+  window.location.replace('/')
 }
 </script>
 
 <template>
   <nav class="border-b border-blue-500 bg-blue-700">
     <div class="container-xl m-auto lg:container">
-      <div class="flex h-16 items-center justify-between">
+      <div class="flex h-16 items-center justify-between px-4">
         <div class="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
           <!-- Logo -->
           <RouterLink class="mr-4 flex flex-shrink-0 items-center" to="/">
@@ -21,29 +65,26 @@ const isActiveLink = (routePath: string) => {
           <div class="md:ml-auto">
             <div class="flex space-x-2">
               <RouterLink
-                to="/"
+                v-for="(page, index) in pages"
+                :key="index"
+                :to="page.t0"
                 :class="[
-                  isActiveLink('/') ? 'bg-blue-900' : 'hover:bg-gray-900 hover:text-white',
+                  route.path === page.t0 ? 'bg-blue-900' : 'hover:bg-blue-600',
                   'text-white',
                   'px-3',
                   'py-2',
                   'rounded-md'
                 ]"
               >
-                Home
+                {{ page.name }}
               </RouterLink>
-              <RouterLink
-                to="/about"
-                :class="[
-                  isActiveLink('/about') ? 'bg-blue-900' : 'hover:bg-gray-900 hover:text-white',
-                  'text-white',
-                  'px-3',
-                  'py-2',
-                  'rounded-md'
-                ]"
+              <button
+                v-if="authenticated"
+                @click="handleLogout"
+                class="cursor-pointer rounded-md px-3 py-2 text-white hover:bg-blue-600"
               >
-                About
-              </RouterLink>
+                Logout
+              </button>
             </div>
           </div>
         </div>

@@ -1,5 +1,15 @@
 import { CategoryQuery } from './categoryQuery'
-import { ProductQuery, ProductByIdQuery } from './productQuery'
+import { OrderQuery, OrderByIdQuery } from './orderQuery'
 import { BundleQuery, BundleByIdQuery } from './bundleQuery'
+import { ProductQuery, AllProductsQuery, ProductByIdQuery } from './productQuery'
 
-export { BundleQuery, BundleByIdQuery, CategoryQuery, ProductQuery, ProductByIdQuery }
+export {
+  OrderQuery,
+  OrderByIdQuery,
+  BundleQuery,
+  ProductQuery,
+  CategoryQuery,
+  BundleByIdQuery,
+  AllProductsQuery,
+  ProductByIdQuery
+}

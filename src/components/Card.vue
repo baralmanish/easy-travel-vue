@@ -13,7 +13,7 @@ defineProps({
 </script>
 
 <template>
-  <RouterLink v-if="to" :to="to" :class="`rounded-lg p-6 shadow-md ${bg} `">
+  <RouterLink v-if="to" :to="to" :class="`rounded-lg p-6 shadow-md ${bg}`">
     <slot></slot>
   </RouterLink>
   <div v-else :class="`${bg} rounded-lg p-6 shadow-md`">
