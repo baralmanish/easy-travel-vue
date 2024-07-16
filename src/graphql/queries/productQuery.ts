@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 const ProductQuery = gql`
-  query Products($categoryId: Float) {
-    products(categoryId: $categoryId) {
+  query Products($isActive: Boolean, $categoryId: Float) {
+    products(isActive: $isActive, categoryId: $categoryId) {
       id
       name
       price

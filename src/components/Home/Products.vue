@@ -22,12 +22,13 @@ export default {
       return route.query.category || null
     })
 
-    let variables = { categoryId: currentId.value ? +currentId.value : null }
+    let variables = { isActive: true, categoryId: currentId.value ? +currentId.value : null }
+    console.log('>>> variables', variables)
     const res = useQuery(ProductQuery, variables)
 
     watchEffect(async () => {
       const id = route.query.category
-      await res.refetch({ categoryId: id ? +id : null })
+      await res.refetch({ isActive: true, categoryId: id ? +id : null })
     })
 
     return {
