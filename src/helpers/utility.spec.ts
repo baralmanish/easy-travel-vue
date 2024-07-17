@@ -8,7 +8,7 @@ describe('Utility: formatDate', () => {
     expect(formattedDate).toBe('2024-07-16')
   })
 
-  it('returns empty if no date od passed', () => {
+  it('returns empty if no date is passed', () => {
     const formattedDate = formatDate()
     expect(formattedDate).toBe('')
   })
