@@ -2,12 +2,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 
 const cache = new InMemoryCache()
-const defaultOptions = {
-  query: {
-    fetchPolicy: 'no-cache'
-    // errorPolicy: 'all'
-  }
-}
 
 const apolloClient = new ApolloClient({
   cache,

@@ -1,5 +1,4 @@
 <script lang="ts">
-import gql from 'graphql-tag'
 import { RouterLink } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
@@ -12,6 +11,7 @@ import { BundleQuery } from '@/graphql/queries'
 export default {
   components: {
     Card,
+    RouterLink,
     PulseLoader,
     ErrorBoundary
   },

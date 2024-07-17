@@ -9,6 +9,7 @@ import { ProductByIdQuery } from '@/graphql/queries'
 
 export default {
   components: {
+    RouterLink,
     PulseLoader,
     ErrorBoundary
   },

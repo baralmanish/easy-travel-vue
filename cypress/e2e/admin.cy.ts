@@ -1,10 +1,3 @@
-// https://on.cypress.io/api
-
-import { hasOperationName, aliasQuery } from '../utils/graphql-test-utils'
-
-import categoriesRes from '../fixtures/categories.json'
-import productsRes from '../fixtures/products.json'
-
 describe('Home Page', () => {
   beforeEach(() => {
     cy.visit('/admin')

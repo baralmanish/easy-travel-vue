@@ -13,6 +13,7 @@ import { ProductQuery } from '@/graphql/queries'
 export default {
   components: {
     Card,
+    RouterLink,
     PulseLoader,
     ErrorBoundary
   },

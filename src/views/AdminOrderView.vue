@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import { useRoute } from 'vue-router'
 import { computed, reactive, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import { useMutation, useQuery } from '@vue/apollo-composable'
 
