@@ -1,5 +1,4 @@
 <script lang="ts">
-import gql from 'graphql-tag'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'

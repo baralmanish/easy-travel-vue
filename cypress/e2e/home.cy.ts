@@ -1,6 +1,4 @@
-// https://on.cypress.io/api
-
-import { hasOperationName, aliasQuery } from '../utils/graphql-test-utils'
+import { hasOperationName } from '../utils/graphql-test-utils'
 
 import categoriesRes from '../fixtures/categories.json'
 import productsRes from '../fixtures/products.json'
