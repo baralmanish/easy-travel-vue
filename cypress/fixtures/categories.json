@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Test Flight",
+      "__typename": "Category"
+    },
+    {
+      "id": "2",
+      "name": "Test Hotel",
+      "__typename": "Category"
+    },
+    {
+      "id": "3",
+      "name": "Test Car Rental",
+      "__typename": "Category"
+    }
+  ]
+}

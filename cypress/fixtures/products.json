@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Product 1",
+      "price": 684.99,
+      "location": "Product 1 Location",
+      "category": {
+        "id": "1",
+        "name": "Test Flight",
+        "__typename": "Category"
+      },
+      "__typename": "Product"
+    },
+    {
+      "id": "1",
+      "name": "Product 2",
+      "price": 684.99,
+      "location": "Product 2 Location",
+      "category": {
+        "id": "2",
+        "name": "Test Hotel",
+        "__typename": "Category"
+      },
+      "__typename": "Product"
+    },
+    {
+      "id": "1",
+      "name": "Product 3",
+      "price": 684.99,
+      "location": "Product 3 Location",
+      "category": {
+        "id": "3",
+        "name": "Test Car Rental",
+        "__typename": "Category"
+      },
+      "__typename": "Product"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <section class="py-14">
+  <section data-test="bundle-section" class="py-14">
     <div class="container-xl m-auto lg:container">
       <h2 class="mb-2 px-4 text-2xl font-bold sm:text-3xl md:text-4xl">Product Bundles</h2>
       <ErrorBoundary :error="error">

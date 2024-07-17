@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <section class="py-8">
+  <section data-test="categories-section" class="py-8">
     <div class="container-xl m-auto lg:container">
       <ErrorBoundary :error="error">
         <div class="p-4 text-center" v-if="loading"><PulseLoader color="rgb(29 78 216)" /></div>
