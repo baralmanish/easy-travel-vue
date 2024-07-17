@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-  <section class="bg-gray-100 py-14">
+  <section data-test="products-section" class="bg-gray-100 py-14">
     <div class="container-xl m-auto lg:container">
       <h2 class="mb-2 px-4 text-2xl font-bold sm:text-3xl md:text-4xl">Our Products</h2>
       <ErrorBoundary :error="error">

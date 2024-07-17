@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <section class="bg-blue-700 py-16">
+  <section data-test="hero-section" class="hero-section bg-blue-700 py-16">
     <div class="mx-auto flex max-w-7xl flex-col items-center px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h1 class="text-3xl font-extrabold text-white sm:text-4xl md:text-5xl">
